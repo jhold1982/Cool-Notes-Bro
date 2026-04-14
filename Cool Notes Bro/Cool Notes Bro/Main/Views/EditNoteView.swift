@@ -8,11 +8,24 @@
 import SwiftUI
 
 struct EditNoteView: View {
+    
+    // MARK: - Properties
+    @Bindable var note: Note
+    
+    
+    // MARK: - View Body
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Form {
+            TextField("Title", text: $note.title)
+                .font(.title2)
+            TextEditor(text: $note.content)
+                .frame(minHeight: 200)
+        }
+        .navigationTitle("Edit Note")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 #Preview {
-    EditNoteView()
+    EditNoteView(note: Note(title: "", content: ""))
 }
